@@ -81,15 +81,16 @@ class Investor:
 
     def one_best_transaction4(self):
         benefit = 0
-        minPrice= self.data[0]["price"]
+        minPrice= self.data[0]
         for i in range(1,len(self.data),1):
-            curBenefit = self.data[i]["price"] - minPrice
-            benefit = max(benefit,curBenefit)
+            curBenefit = self.data[i]["price"] - minPrice["price"]
+            benefit = max(benefit,self.data[i]["price"] - minPrice["price"])
             if benefit == curBenefit:
                 sell = self.data[i]
-            minPrice = min(minPrice,self.data[i]["price"])
-            if minPrice == self.data[i]["price"]:
-                buy = self.data[i]
+                buy = minPrice
+            if self.data[i]["price"] < minPrice["price"]:
+                minPrice = self.data[i]
+
         print("Изменение цены акции с момента покупки до момента продажи")
         for _ in range(buy["index"],sell["index"]+1,1):
             print(self.data[_]["date"],self.data[_]["time"],self.data[_]["price"],
@@ -97,5 +98,11 @@ class Investor:
         print("Акция была куплена", buy["date"], buy["time"], "за", buy["price"])
         print("Акция была продана", sell["date"], sell["time"], "за", sell["price"])
         print("Выгода составила",benefit)
+
+    def two_best_transactions(self):
+        pass
+
+    def k_best_transactions(self):
+        pass
 
 

@@ -52,15 +52,5 @@ class Investor:
 
     
 
-    def lol(self):
-        profit = 0
-        for i in range(1,len(self.prices),1):
-            sub = self.prices[i] - self.prices[i - 1];
-            if (sub > 0):
-                profit += sub
-        print(self.prices)
-        print(profit)
 
-    def k_best_transactions(self):
-        pass
 
